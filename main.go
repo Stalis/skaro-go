@@ -1,7 +1,11 @@
 package main
 
-import "github.com/Stalis/skarolib-go"
+import (
+	"fmt"
+	"skaro-im/skarolib-go"
+)
 
-func main()  {
-	skarolib.FakeFunc()
+func main() {
+	fmt.Println("Starting...")
+	skaro.StartConnection("skaro.stalis-dev.xyz:8000")
 }
