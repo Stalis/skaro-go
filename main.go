@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"skaro-im/skarolib-go"
 )
 
 func main() {
-	fmt.Println("Starting...")
+	log.Println("Starting...")
 	skaro.StartConnection("skaro.stalis-dev.xyz:8000")
 }
