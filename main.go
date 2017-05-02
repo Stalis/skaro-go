@@ -3,7 +3,8 @@ package main
 import (
 	"flag"
 	"log"
-	"skaro-im/skarolib-go"
+
+	"github.com/Stalis/skarolib-go"
 )
 
 var host = flag.String("host", "skaro.stalis-dev.xyz:8000", "http service address")
