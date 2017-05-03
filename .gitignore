@@ -6,6 +6,8 @@
 # Folders
 _obj
 _test
+bin
+debug
 
 # Architecture specific extensions/prefixes
 *.[568vq]
@@ -22,3 +24,9 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+*config.*
+!*config*.example
+
+.vscode
+.idea

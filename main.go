@@ -1,15 +1,27 @@
 package main
 
 import (
-	"flag"
+	"encoding/json"
+	"io/ioutil"
 	"log"
 
 	"github.com/Stalis/skaro-go/skarolib"
 )
 
-var host = flag.String("host", "skaro.stalis-dev.xyz:8000", "http service address")
+type Config struct {
+	Host string
+}
 
 func main() {
 	log.Println("Starting...")
-	skaro.StartConnection(*host)
+	inputFile, err := ioutil.ReadFile("config.json")
+	if err != nil {
+		log.Fatalln("config.json not exists")
+	}
+
+	var configuration Config
+
+	json.Unmarshal(inputFile, &configuration)
+
+	skaro.StartConnection(configuration.Host)
 }
