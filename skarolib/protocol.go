@@ -4,6 +4,8 @@ package skaro
 import (
 	"log"
 
+	"errors"
+
 	"github.com/ugorji/go/codec"
 )
 
@@ -31,10 +33,19 @@ func (pack *Packet) Build() ([]byte, error) {
 
 func (pack *Packet) Read(input []byte) error {
 	log.Println("Reading packet...")
-    var err error
-    handler codec.Handle = new(codec.CborHandle)
-    decoder *codec.Encoder = codec.NewDecoderBytes(&pack, handler)
-
-    err = decoder.Decode(input)
-    return err
+	var (
+		decoded interface{}
+		err     error = codec.NewDecoderBytes(input, new(codec.CborHandle)).Decode(&decoded)
+	)
+	if err != nil {
+		return err
+	}
+	switch packetTyped := decoded.(type) {
+	case map[string]interface{}:
+		*pack = packetTyped
+	default:
+		log.Fatalln("Wrong packet recieved:", input)
+		return errors.New("Wrong packet")
+	}
+	return err
 }
