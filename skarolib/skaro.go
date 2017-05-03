@@ -2,9 +2,6 @@ package skaro
 
 import (
 	"log"
-
-	//"bitbucket.org/bodhisnarkva/cbor/go"
-	//"github.com/gorilla/websocket"
 )
 
 func StartConnection(host string) {

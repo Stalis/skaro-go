@@ -29,6 +29,12 @@ func (pack *Packet) Build() ([]byte, error) {
 	return output, err
 }
 
-func (pack *Packet) Read([]byte) error {
-	return nil
+func (pack *Packet) Read(input []byte) error {
+	log.Println("Reading packet...")
+    var err error
+    handler codec.Handle = new(codec.CborHandle)
+    decoder *codec.Encoder = codec.NewDecoderBytes(&pack, handler)
+
+    err = decoder.Decode(input)
+    return err
 }
