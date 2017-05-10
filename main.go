@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/Stalis/skaro-go/skarolib"
+	"github.com/Stalis/libskaro-go"
 )
 
 type Config struct {
